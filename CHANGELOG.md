@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.0.3
+
+- Fixed CV sections rendering as a plain bulleted list when Bootstrap compat is off, which is the starter default (#8): a stray bullet beside every date, a 40px indent and no dividers between entries. Base list-group rules are now scoped to the CV's `ul` markup, with values taken from `al_folio_core`'s compat rules, so the CV renders the same with compat on or off.
+- Removed the short divider drawn above each date badge (#9), which came from core's `table:not(.table) td, th` top border.
+
 ## 1.0.2
 
 - Render a date badge for CV entries that carry a single point-in-time `date` instead of a `start_date`/`end_date` pair (ports `alshedivat/al-folio#3339`). `al_cv_sort_by_date` has understood a bare `date` since 1.0.1, so such entries were already being ordered by it while the templates dropped the badge without any warning. The experience and education templates now fall back to `date` (and the JSONResume `releaseDate`) when no start date is set, rendering it as a single year — a standalone date is a point in time, so it is never labelled `Present`. An explicit `start_date`/`startDate` still wins, and closed ranges render exactly as before.
